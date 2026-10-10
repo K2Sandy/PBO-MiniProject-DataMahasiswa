@@ -1,6 +1,6 @@
 public class Mahasiswa {
 
-    // Attribute
+    // Atribut
     String nama;
     String nim;
     double nilai;
