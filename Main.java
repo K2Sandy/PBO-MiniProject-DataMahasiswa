@@ -1,10 +1,24 @@
-import java.util.Scanner;
+/*
+ * ============================================================
+ *  Program Data Mahasiswa (CLI)
+ *  Mini Project PBO - Minggu 3 & 4
+ * ============================================================
+ *  Alur program:
+ *    1. Minta jumlah mahasiswa dari user (minimal 3).
+ *    2. Minta nama, NIM, dan nilai untuk tiap mahasiswa.
+ *    3. Tampilkan data tiap mahasiswa beserta status kelulusannya.
+ *    4. Tampilkan ringkasan (total, jumlah lulus, jumlah tidak lulus).
+ */
+
+
+import java.util.Scanner;  // untuk membaca input dari keyboard
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        // do-while: minimal berjalan satu kali, ulangi sampai jumlah valid (>= 3)
+          // Input jumlah mahasiswa, diulang sampai valid (angka dan minimal 3)
+          // menggunakan algotitma do-while
         int jumlah = 0;
         boolean valid;
         do {
@@ -18,7 +32,7 @@ public class Main {
                 } else {
                     System.out.println("Jumlah minimal 3 mahasiswa, coba lagi.");
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {  //penanganan error menggunakan sistem try catch
                 System.out.println("Input harus berupa bilangan bulat, coba lagi.");
             }
         } while (!valid);
@@ -26,13 +40,14 @@ public class Main {
         // Array untuk menampung banyak object Mahasiswa
         Mahasiswa[] daftar = new Mahasiswa[jumlah];
 
-        // for: jumlah pengulangan sudah diketahui -> input data
+        // for: jumlah pengulangan sudah diketahui, input data sebanyak jumlah tsb
         for (int i = 0; i < jumlah; i++) {
             System.out.println();
             System.out.println("=== Data Mahasiswa ke-" + (i + 1) + " ===");
 
             Mahasiswa mhs = new Mahasiswa();   // membuat object baru
 
+            //print2 disini
             System.out.print("Nama  : ");
             mhs.nama = input.nextLine();
 
@@ -45,18 +60,18 @@ public class Main {
                 System.out.print("Nilai : ");
                 String teksNilai = input.nextLine().trim();
                 try {
-                    mhs.nilai = Double.parseDouble(teksNilai);   // String -> double
+                    mhs.nilai = Double.parseDouble(teksNilai);   // String menggunakan double
                     if (mhs.nilai >= 0 && mhs.nilai <= 100) {
                         nilaiValid = true;
                     } else {
                         System.out.println("Nilai harus 0 - 100, coba lagi.");
                     }
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {     //penanganan error menggunakan sistem try catch
                     System.out.println("Nilai harus berupa angka (desimal pakai titik), coba lagi.");
                 }
             }
 
-            daftar[i] = mhs;
+            daftar[i] = mhs;        //pada akhir loop menyimpan object mhs ke daftar
         }
 
         // for: tampilkan hasil semua mahasiswa
